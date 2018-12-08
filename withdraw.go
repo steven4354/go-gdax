@@ -35,10 +35,11 @@ sample
 }
 */
 
-func (c *Client) WithdrawCrypto(newWithdrawal *CryptoWithdrawal) (CryptoWithdrawalResponse, error) {
+func (c *Client) WithdrawCrypto(amount string, currency string, cryptoAddress string) (CryptoWithdrawalResponse, error) {
+	newWithdrawalReq := CryptoWithdrawal{amount, currency, cryptoAddress}
 	resp := CryptoWithdrawalResponse{}
 
 	url := fmt.Sprintf("/withdrawals/crypto")
-	_, err := c.Request("POST", url, newWithdrawal, &resp)
+	_, err := c.Request("POST", url, newWithdrawalReq, &resp)
 	return resp, err
 }
