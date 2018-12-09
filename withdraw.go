@@ -1,11 +1,12 @@
 package gdax
 
 import (
+	"log"
 	"fmt"
 )
 
 type CryptoWithdrawal struct {
-	Amount      string `json:"amount"`
+	Amount      float64 `json:"amount"`
 	Currency      string `json:"currency"`
 	CryptoAddress      string `json:"crypto_address"`
 }
@@ -36,7 +37,11 @@ sample
 */
 
 func (c *Client) WithdrawCrypto(amount string, currency string, cryptoAddress string) (CryptoWithdrawalResponse, error) {
-	newWithdrawalReq := CryptoWithdrawal{amount, currency, cryptoAddress}
+	amountFloat := StringToFloat(amount)
+	newWithdrawalReq := CryptoWithdrawal{amountFloat, currency, cryptoAddress}
+
+	log.Printf("DEBUG > newWithdrawalReq %v", newWithdrawalReq)
+
 	resp := CryptoWithdrawalResponse{}
 
 	url := fmt.Sprintf("/withdrawals/crypto")
