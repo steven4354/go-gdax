@@ -36,6 +36,8 @@ sample
 }
 */
 
+// go get test
+
 func (c *Client) WithdrawCrypto(amount string, currency string, cryptoAddress string) (CryptoWithdrawalResponse, error) {
 	amountFloat := StringToFloat(amount)
 	newWithdrawalReq := CryptoWithdrawal{amountFloat, currency, cryptoAddress}
