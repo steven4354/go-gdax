@@ -40,7 +40,7 @@ func (c *Client) WithdrawCrypto(amount string, currency string, cryptoAddress st
 	amountFloat := StringToFloat(amount)
 	newWithdrawalReq := CryptoWithdrawal{amountFloat, currency, cryptoAddress}
 
-	log.Printf("DEBUG > newWithdrawalReq %v", newWithdrawalReq)
+	log.Printf("DEBUG > newWithdrawalReq %+v", newWithdrawalReq)
 
 	resp := CryptoWithdrawalResponse{}
 
